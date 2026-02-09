@@ -1146,3 +1146,61 @@ export const foreshadowApi = {
       data
     ),
 };
+
+// ===== 结构蓝图 API =====
+export const blueprintApi = {
+  // 获取项目蓝图总览
+  getOverview: (projectId: string) =>
+    api.get<unknown, import('../types').BlueprintOverview>(`/blueprint/projects/${projectId}`),
+
+  // Thread CRUD
+  getThreads: (projectId: string, status?: string) =>
+    api.get<unknown, { items: import('../types').StructureThread[]; total: number }>(
+      `/blueprint/threads/projects/${projectId}`,
+      { params: { status } }
+    ),
+  createThread: (data: Partial<import('../types').StructureThread> & { project_id: string }) =>
+    api.post<unknown, import('../types').StructureThread>('/blueprint/threads', data),
+  updateThread: (threadId: string, data: Partial<import('../types').StructureThread>) =>
+    api.put<unknown, import('../types').StructureThread>(`/blueprint/threads/${threadId}`, data),
+  deleteThread: (threadId: string) =>
+    api.delete<unknown, { message: string }>(`/blueprint/threads/${threadId}`),
+
+  // Clue CRUD
+  getClues: (projectId: string, params?: { status?: string; thread_id?: string }) =>
+    api.get<unknown, { items: import('../types').StructureClue[]; total: number }>(
+      `/blueprint/clues/projects/${projectId}`,
+      { params }
+    ),
+  createClue: (data: Partial<import('../types').StructureClue> & { project_id: string }) =>
+    api.post<unknown, import('../types').StructureClue>('/blueprint/clues', data),
+  updateClue: (clueId: string, data: Partial<import('../types').StructureClue>) =>
+    api.put<unknown, import('../types').StructureClue>(`/blueprint/clues/${clueId}`, data),
+  deleteClue: (clueId: string) =>
+    api.delete<unknown, { message: string }>(`/blueprint/clues/${clueId}`),
+
+  // Hub CRUD
+  getHubs: (projectId: string) =>
+    api.get<unknown, { items: import('../types').StructureHub[]; total: number }>(
+      `/blueprint/hubs/projects/${projectId}`
+    ),
+  createHub: (data: Partial<import('../types').StructureHub> & { project_id: string }) =>
+    api.post<unknown, import('../types').StructureHub>('/blueprint/hubs', data),
+  updateHub: (hubId: string, data: Partial<import('../types').StructureHub>) =>
+    api.put<unknown, import('../types').StructureHub>(`/blueprint/hubs/${hubId}`, data),
+  deleteHub: (hubId: string) =>
+    api.delete<unknown, { message: string }>(`/blueprint/hubs/${hubId}`),
+
+  // Milestone CRUD
+  getMilestones: (projectId: string, status?: string) =>
+    api.get<unknown, { items: import('../types').StructureMilestone[]; total: number }>(
+      `/blueprint/milestones/projects/${projectId}`,
+      { params: { status } }
+    ),
+  createMilestone: (data: Partial<import('../types').StructureMilestone> & { project_id: string }) =>
+    api.post<unknown, import('../types').StructureMilestone>('/blueprint/milestones', data),
+  updateMilestone: (milestoneId: string, data: Partial<import('../types').StructureMilestone>) =>
+    api.put<unknown, import('../types').StructureMilestone>(`/blueprint/milestones/${milestoneId}`, data),
+  deleteMilestone: (milestoneId: string) =>
+    api.delete<unknown, { message: string }>(`/blueprint/milestones/${milestoneId}`),
+};

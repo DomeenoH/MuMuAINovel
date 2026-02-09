@@ -959,7 +959,6 @@ export interface PromptWorkshopAdminStats {
   total_likes: number;
 }
 
-// 提示词工坊分类常量
 export const PROMPT_CATEGORIES: Record<string, string> = {
   general: '通用',
   fantasy: '玄幻/仙侠',
@@ -972,3 +971,91 @@ export const PROMPT_CATEGORIES: Record<string, string> = {
   game: '游戏/电竞',
   other: '其他',
 };
+
+// ===== 结构蓝图类型定义 =====
+
+export interface StructureThread {
+  id: string;
+  project_id: string;
+  thread_id: string;
+  title: string;
+  core_question: string;
+  final_answer?: string;
+  status: 'pending' | 'in_progress' | 'revealed';
+  reveal_schedule?: Array<{ chapter: number; reveal_level: string }>;
+  related_character_ids?: string[];
+  notes?: string;
+  color?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface StructureClue {
+  id: string;
+  project_id: string;
+  thread_id?: string;
+  clue_id: string;
+  title: string;
+  description?: string;
+  carrier?: string;
+  status: 'seed' | 'verified' | 'payoff' | 'red_herring';
+  lifecycle?: Record<string, unknown>;
+  is_red_herring?: boolean;
+  related_character_ids?: string[];
+  notes?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface StructureHub {
+  id: string;
+  project_id: string;
+  hub_id: string;
+  name: string;
+  location?: string;
+  frequency?: string;
+  resident_character_ids?: string[];
+  functions?: string[];
+  trading_rules?: string;
+  taboos?: string;
+  appearances?: Array<{ chapter: number; note: string }>;
+  notes?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface StructureMilestone {
+  id: string;
+  project_id: string;
+  milestone_id: string;
+  title: string;
+  description?: string;
+  conditions?: Array<{ condition: string; met: boolean }>;
+  cost?: string;
+  aftermath?: string;
+  status: 'pending' | 'in_progress' | 'achieved';
+  target_chapter?: number;
+  actual_chapter?: number;
+  related_thread_ids?: string[];
+  notes?: string;
+  achieved_at?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface BlueprintOverview {
+  project_id: string;
+  threads: StructureThread[];
+  clues: StructureClue[];
+  hubs: StructureHub[];
+  milestones: StructureMilestone[];
+  stats: {
+    threads_total: number;
+    threads_revealed: number;
+    clues_total: number;
+    clues_payoff: number;
+    hubs_total: number;
+    milestones_total: number;
+    milestones_achieved: number;
+  };
+}

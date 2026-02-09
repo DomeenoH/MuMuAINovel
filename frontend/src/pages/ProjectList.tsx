@@ -841,6 +841,21 @@ export default function ProjectList() {
                         >
                           灵感模式
                         </Button>
+                        <Button
+                          size={isMobile ? 'middle' : 'large'}
+                          icon={<FileSearchOutlined />}
+                          onClick={() => navigate('/wizard/structured')}
+                          style={{
+                            height: isMobile ? '38px' : '50px',
+                            fontSize: isMobile ? '14px' : '16px',
+                            borderColor: '#722ed1',
+                            color: '#722ed1',
+                            background: 'rgba(114, 46, 209, 0.1)'
+                          }}
+                          block
+                        >
+                          结构化向导
+                        </Button>
                         <div style={{ textAlign: 'center', color: '#999', fontSize: isMobile ? 11 : 12, marginTop: isMobile ? 4 : 8 }}>
                             开始一个新的创作旅程
                         </div>

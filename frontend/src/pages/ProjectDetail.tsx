@@ -17,6 +17,7 @@ import {
   HeartOutlined,
   TrophyOutlined,
   BulbOutlined,
+  BranchesOutlined,
   CloudOutlined,
 } from '@ant-design/icons';
 import { useStore } from '../store';
@@ -148,6 +149,11 @@ export default function ProjectDetail() {
       label: <Link to={`/project/${projectId}/foreshadows`}>伏笔管理</Link>,
     },
     {
+      key: 'blueprint',
+      icon: <BranchesOutlined />,
+      label: <Link to={`/project/${projectId}/blueprint`}>结构蓝图</Link>,
+    },
+    {
       key: 'writing-styles',
       icon: <EditOutlined />,
       label: <Link to={`/project/${projectId}/writing-styles`}>写作风格</Link>,
@@ -175,6 +181,7 @@ export default function ProjectDetail() {
     if (path.includes('/characters')) return 'characters';
     if (path.includes('/chapter-analysis')) return 'chapter-analysis';
     if (path.includes('/foreshadows')) return 'foreshadows';
+    if (path.includes('/blueprint')) return 'blueprint';
     if (path.includes('/chapters')) return 'chapters';
     if (path.includes('/writing-styles')) return 'writing-styles';
     if (path.includes('/prompt-workshop')) return 'prompt-workshop';

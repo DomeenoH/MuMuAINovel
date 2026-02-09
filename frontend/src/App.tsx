@@ -3,6 +3,8 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import ProjectList from './pages/ProjectList';
 import ProjectWizardNew from './pages/ProjectWizardNew';
+import WorkflowSelector from './pages/WorkflowSelector';
+import StructuredWizard from './pages/StructuredWizard';
 import Inspiration from './pages/Inspiration';
 import ProjectDetail from './pages/ProjectDetail';
 import WorldSetting from './pages/WorldSetting';
@@ -15,6 +17,7 @@ import Chapters from './pages/Chapters';
 import ChapterReader from './pages/ChapterReader';
 import ChapterAnalysis from './pages/ChapterAnalysis';
 import Foreshadows from './pages/Foreshadows';
+import Blueprint from './pages/Blueprint';
 import WritingStyles from './pages/WritingStyles';
 import PromptWorkshop from './pages/PromptWorkshop';
 import Settings from './pages/Settings';
@@ -28,6 +31,7 @@ import AuthCallback from './pages/AuthCallback';
 import ProtectedRoute from './components/ProtectedRoute';
 import AppFooter from './components/AppFooter';
 import './App.css';
+
 
 function App() {
   return (
@@ -45,6 +49,9 @@ function App() {
           <Route path="/" element={<ProtectedRoute><><ProjectList /><AppFooter sidebarWidth={220} /></></ProtectedRoute>} />
           <Route path="/projects" element={<ProtectedRoute><><ProjectList /><AppFooter sidebarWidth={220} /></></ProtectedRoute>} />
           <Route path="/wizard" element={<ProtectedRoute><ProjectWizardNew /></ProtectedRoute>} />
+          <Route path="/wizard/new" element={<ProtectedRoute><ProjectWizardNew /></ProtectedRoute>} />
+          <Route path="/wizard/structured" element={<ProtectedRoute><WorkflowSelector /></ProtectedRoute>} />
+          <Route path="/wizard/structured/:workflowId" element={<ProtectedRoute><StructuredWizard /></ProtectedRoute>} />
           <Route path="/inspiration" element={<ProtectedRoute><Inspiration /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
           <Route path="/prompt-templates" element={<ProtectedRoute><><PromptTemplates /><AppFooter /></></ProtectedRoute>} />
@@ -62,6 +69,7 @@ function App() {
             <Route path="chapters" element={<Chapters />} />
             <Route path="chapter-analysis" element={<ChapterAnalysis />} />
             <Route path="foreshadows" element={<Foreshadows />} />
+            <Route path="blueprint" element={<Blueprint />} />
             <Route path="writing-styles" element={<WritingStyles />} />
             <Route path="prompt-workshop" element={<PromptWorkshop />} />
             <Route path="sponsor" element={<Sponsor />} />
